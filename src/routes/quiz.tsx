@@ -33,7 +33,7 @@ function QuizPage() {
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
 
-  const question = quizQuestions[index];
+  const question = quizQuestions[index]!;
   const course = getCourse(question.courseSlug);
   const answered = selected !== null;
   const correct = selected === question.answerIndex;
