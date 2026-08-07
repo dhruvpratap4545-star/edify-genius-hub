@@ -141,7 +141,7 @@ function CourseDetail() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                {course.outcomes.map((outcome) => (
+                {course.outcomes.map((outcome: string) => (
                   <li key={outcome} className="flex gap-2">
                     <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
                     {outcome}
