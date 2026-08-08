@@ -63,6 +63,11 @@
   --color-chalkboard-frame: var(--chalkboard-frame);
   --color-chalk: var(--chalk);
   --color-chalk-accent: var(--chalk-accent);
+  --color-holo-room: var(--holo-room);
+  --color-holo-glow: var(--holo-glow);
+  --color-holo-line: var(--holo-line);
+  --color-holo-text: var(--holo-text);
+  --color-holo-accent: var(--holo-accent);
 }
 
 :root {
@@ -103,6 +108,11 @@
   --chalkboard-frame: oklch(0.42 0.06 60);
   --chalk: oklch(0.96 0.01 100);
   --chalk-accent: oklch(0.86 0.13 85);
+  --holo-room: oklch(0.19 0.035 250);
+  --holo-glow: oklch(0.78 0.15 210);
+  --holo-line: oklch(0.7 0.14 205);
+  --holo-text: oklch(0.95 0.04 210);
+  --holo-accent: oklch(0.85 0.14 175);
 }
 
 @keyframes blink {
