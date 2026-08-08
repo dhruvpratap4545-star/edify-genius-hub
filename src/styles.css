@@ -184,6 +184,11 @@
   --chalkboard-frame: oklch(0.32 0.05 60);
   --chalk: oklch(0.94 0.01 100);
   --chalk-accent: oklch(0.82 0.12 85);
+  --holo-room: oklch(0.15 0.03 250);
+  --holo-glow: oklch(0.8 0.15 210);
+  --holo-line: oklch(0.72 0.14 205);
+  --holo-text: oklch(0.96 0.04 210);
+  --holo-accent: oklch(0.86 0.14 175);
 }
 
 @layer base {
