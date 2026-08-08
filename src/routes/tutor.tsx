@@ -161,6 +161,7 @@ function TutorPage() {
             </CardHeader>
           </Card>
         </aside>
+        </div>
       </div>
     </SiteLayout>
   );
