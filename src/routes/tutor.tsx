@@ -3,9 +3,11 @@ import { useState } from "react";
 import { Bot, Send, User } from "lucide-react";
 
 import { SiteLayout } from "@/components/site-layout";
+import { Blackboard } from "@/components/blackboard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { boardFor, welcomeBoard, type BoardContent } from "@/lib/board-content";
 import { tutorReply } from "@/lib/demo-data";
 
 export const Route = createFileRoute("/tutor")({
@@ -46,6 +48,8 @@ function TutorPage() {
   ]);
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
+  const [board, setBoard] = useState<BoardContent>(welcomeBoard);
+  const [revision, setRevision] = useState(0);
 
   const send = (text: string) => {
     const question = text.trim();
@@ -58,14 +62,20 @@ function TutorPage() {
         ...prev,
         { id: Date.now() + 1, role: "tutor", text: tutorReply(question) },
       ]);
+      setBoard(boardFor(question));
+      setRevision((r) => r + 1);
       setThinking(false);
     }, 600);
   };
 
   return (
     <SiteLayout>
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 lg:grid-cols-[1.7fr_1fr]">
-        <Card className="flex h-[70vh] flex-col">
+      <div className="mx-auto max-w-6xl space-y-8 px-4 py-14">
+        <Blackboard content={board} revision={revision} />
+
+        <div className="grid gap-8 lg:grid-cols-[1.7fr_1fr]">
+        <Card className="flex h-[60vh] flex-col">
+
           <CardHeader className="border-b border-border">
             <CardTitle className="flex items-center gap-2 text-base">
               <Bot className="size-5 text-primary" /> AI Tutor
@@ -151,6 +161,7 @@ function TutorPage() {
             </CardHeader>
           </Card>
         </aside>
+        </div>
       </div>
     </SiteLayout>
   );
