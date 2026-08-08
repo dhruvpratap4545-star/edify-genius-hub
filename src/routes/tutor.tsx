@@ -3,9 +3,11 @@ import { useState } from "react";
 import { Bot, Send, User } from "lucide-react";
 
 import { SiteLayout } from "@/components/site-layout";
+import { Blackboard } from "@/components/blackboard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { boardFor, welcomeBoard, type BoardContent } from "@/lib/board-content";
 import { tutorReply } from "@/lib/demo-data";
 
 export const Route = createFileRoute("/tutor")({
