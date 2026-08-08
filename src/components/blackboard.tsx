@@ -88,7 +88,7 @@ export function Blackboard({ content, revision, className }: Props) {
 
       <TutorAvatar
         speaking={writing}
-        className="absolute bottom-5 right-5 sm:right-8"
+        className="absolute bottom-8 right-5 sm:right-8"
       />
     </div>
   );
