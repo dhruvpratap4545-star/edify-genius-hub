@@ -5,65 +5,92 @@ type Props = {
   className?: string;
 };
 
-/** Lightweight SVG tutor who blinks, and mouths words while explaining. */
+/** Holographic tutor projection: blinks, mouths words and points at the board. */
 export function TutorAvatar({ speaking, className }: Props) {
   return (
     <div className={cn("flex flex-col items-center gap-2", className)}>
-      <svg
-        viewBox="0 0 120 150"
-        role="img"
-        aria-label={speaking ? "AI tutor explaining at the board" : "AI tutor waiting"}
-        className="w-20 drop-shadow-sm sm:w-24"
-      >
-        {/* body */}
-        <path
-          d="M18 150c0-24 19-38 42-38s42 14 42 38z"
-          className="fill-primary"
-        />
-        <path
-          d="M60 112c-7 10-13 16-13 16l-8-12 9-6zM60 112c7 10 13 16 13 16l8-12-9-6z"
-          className="fill-primary-foreground/25"
-        />
-        {/* neck */}
-        <rect x="52" y="94" width="16" height="20" rx="7" className="fill-accent/70" />
-        {/* head */}
-        <ellipse cx="60" cy="64" rx="34" ry="36" className="fill-accent" />
-        {/* hair */}
-        <path
-          d="M26 60c0-22 15-34 34-34s34 12 34 34c0-10-14-14-34-14s-34 4-34 14z"
-          className="fill-accent-foreground/80"
-        />
-        {/* eyes */}
-        <g className="fill-accent-foreground">
-          <ellipse cx="47" cy="63" rx="4" ry="5" className="origin-center animate-[blink_5s_ease-in-out_infinite]" />
-          <ellipse cx="73" cy="63" rx="4" ry="5" className="origin-center animate-[blink_5s_ease-in-out_infinite]" />
-        </g>
-        {/* brows */}
-        <g className="stroke-accent-foreground/70" strokeWidth="3" strokeLinecap="round">
-          <line x1="41" y1="53" x2="53" y2="51" />
-          <line x1="67" y1="51" x2="79" y2="53" />
-        </g>
-        {/* mouth */}
-        {speaking ? (
-          <ellipse
-            cx="60"
-            cy="80"
-            rx="7"
-            ry="6"
-            className="fill-accent-foreground origin-[60px_80px] animate-[talk_0.4s_ease-in-out_infinite]"
-          />
-        ) : (
-          <path
-            d="M52 79c4 5 12 5 16 0"
-            fill="none"
-            className="stroke-accent-foreground"
-            strokeWidth="3"
+      <div className="relative animate-[holo-float_6s_ease-in-out_infinite]">
+        <svg
+          viewBox="0 0 140 160"
+          role="img"
+          aria-label={speaking ? "AI tutor explaining at the board" : "AI tutor waiting"}
+          className="w-24 animate-[holo-flicker_4s_linear_infinite] sm:w-32"
+          style={{ filter: "drop-shadow(0 0 10px var(--holo-glow))" }}
+        >
+          <defs>
+            <linearGradient id="holoBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--holo-text)" stopOpacity="0.85" />
+              <stop offset="70%" stopColor="var(--holo-glow)" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="var(--holo-glow)" stopOpacity="0.05" />
+            </linearGradient>
+          </defs>
+
+          <g
+            stroke="var(--holo-line)"
+            strokeWidth="1.6"
             strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="url(#holoBody)"
+          >
+            {/* torso / dress */}
+            <path d="M44 152c0-30 8-52 26-52s26 22 26 52z" />
+            {/* pointing arm toward the board */}
+            <path d="M52 106 18 84l4-7 34 18z" />
+            {/* resting arm holding a book */}
+            <path d="M88 106l16 16-6 6-16-14z" />
+            {/* neck */}
+            <rect x="62" y="82" width="16" height="18" rx="7" />
+            {/* head */}
+            <ellipse cx="70" cy="60" rx="24" ry="26" />
+            {/* hair */}
+            <path d="M46 58c0-16 11-25 24-25s24 9 24 25c0-8-10-11-24-11s-24 3-24 11z" fillOpacity="0.9" />
+          </g>
+
+          {/* eyes */}
+          <g fill="var(--holo-room)">
+            <ellipse cx="61" cy="59" rx="3" ry="4" className="origin-center animate-[blink_5s_ease-in-out_infinite]" />
+            <ellipse cx="79" cy="59" rx="3" ry="4" className="origin-center animate-[blink_5s_ease-in-out_infinite]" />
+          </g>
+          {/* glasses */}
+          <g stroke="var(--holo-accent)" strokeWidth="1.4" fill="none">
+            <circle cx="61" cy="59" r="7" />
+            <circle cx="79" cy="59" r="7" />
+            <line x1="68" y1="59" x2="72" y2="59" />
+          </g>
+          {/* mouth */}
+          {speaking ? (
+            <ellipse
+              cx="70"
+              cy="73"
+              rx="5"
+              ry="4"
+              fill="var(--holo-room)"
+              className="origin-[70px_73px] animate-[talk_0.4s_ease-in-out_infinite]"
+            />
+          ) : (
+            <path d="M64 72c3 4 9 4 12 0" fill="none" stroke="var(--holo-room)" strokeWidth="2" strokeLinecap="round" />
+          )}
+
+          {/* projector pad */}
+          <ellipse
+            cx="70"
+            cy="153"
+            rx="34"
+            ry="6"
+            fill="var(--holo-glow)"
+            className="animate-[holo-pulse_3s_ease-in-out_infinite]"
           />
-        )}
-      </svg>
-      <span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
-        {speaking ? "Explaining…" : "Ready"}
+        </svg>
+      </div>
+      <span
+        className="rounded-full border px-3 py-1 text-[11px] font-medium tracking-wide uppercase"
+        style={{
+          borderColor: "var(--holo-line)",
+          color: "var(--holo-text)",
+          background: "color-mix(in oklab, var(--holo-glow) 12%, transparent)",
+        }}
+      >
+        {speaking ? "Explaining…" : "Standing by"}
       </span>
     </div>
   );
