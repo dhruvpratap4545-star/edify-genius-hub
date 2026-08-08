@@ -82,13 +82,13 @@ export function Blackboard({ content, revision, className }: Props) {
             </p>
           )}
 
-          <div className="mt-6 h-10 sm:h-0" />
+          <div className="mt-6 h-24 sm:h-16" />
         </div>
       </div>
 
       <TutorAvatar
         speaking={writing}
-        className="absolute -bottom-2 right-2 sm:right-4"
+        className="absolute bottom-5 right-5 sm:right-8"
       />
     </div>
   );
