@@ -43,7 +43,7 @@ function TutorPage() {
     {
       id: 0,
       role: "tutor",
-      text: "Hi Aarav — I'm your study partner. Tell me what you're working on and I'll ask the questions that get you there. What topic is giving you trouble today?",
+      text: "Welcome to Dhruv Academy! I am Dhruv AI, your personal tutor. How can I help you learn today?",
     },
   ]);
   const [input, setInput] = useState("");

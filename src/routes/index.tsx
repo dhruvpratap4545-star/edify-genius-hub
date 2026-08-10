@@ -71,10 +71,10 @@ function Index() {
               Demo mode — everything is live
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Learn faster with a tutor that asks the right question
+              Dhruv Academy — Your Personal AI Guide for Learning
             </h1>
             <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-              Dhruv Academy combines adaptive courses, a Socratic AI tutor and honest progress analytics
+              Dhruv Academy combines adaptive courses, Dhruv AI as your Socratic tutor and honest progress analytics
               into one workspace built on the science of how memory actually works.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
