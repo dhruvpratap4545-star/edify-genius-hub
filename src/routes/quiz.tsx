@@ -11,13 +11,13 @@ import { quizQuestions, getCourse } from "@/lib/demo-data";
 export const Route = createFileRoute("/quiz")({
   head: () => ({
     meta: [
-      { title: "Practice Quiz — AiEdTech" },
+      { title: "Practice Quiz — Dhruv Academy" },
       {
         name: "description",
         content:
-          "Five retrieval-practice questions pulled from your active AiEdTech lessons, with instant explanations.",
+          "Five retrieval-practice questions pulled from your active Dhruv Academy lessons, with instant explanations.",
       },
-      { property: "og:title", content: "Practice Quiz — AiEdTech" },
+      { property: "og:title", content: "Practice Quiz — Dhruv Academy" },
       {
         property: "og:description",
         content: "Retrieval practice with instant feedback across your active courses.",

@@ -247,7 +247,7 @@ export const quizQuestions: QuizQuestion[] = [
 ];
 
 export const learner = {
-  name: "Aarav Mehta",
+  name: "Dhruv",
   streak: 12,
   minutesThisWeek: 265,
   weeklyGoal: 300,

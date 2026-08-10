@@ -10,13 +10,13 @@ import { courses, learner } from "@/lib/demo-data";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Learning Dashboard — AiEdTech" },
+      { title: "Learning Dashboard — Dhruv Academy" },
       {
         name: "description",
         content:
-          "Track streaks, weekly study minutes, XP and per-course progress across your AiEdTech learning plan.",
+          "Track streaks, weekly study minutes, XP and per-course progress across your Dhruv Academy learning plan.",
       },
-      { property: "og:title", content: "Learning Dashboard — AiEdTech" },
+      { property: "og:title", content: "Learning Dashboard — Dhruv Academy" },
       {
         property: "og:description",
         content: "Streaks, weekly minutes, XP and course-by-course progress at a glance.",
