@@ -68,6 +68,12 @@
   --color-holo-line: var(--holo-line);
   --color-holo-text: var(--holo-text);
   --color-holo-accent: var(--holo-accent);
+  --color-kid-sun: var(--kid-sun);
+  --color-kid-sky: var(--kid-sky);
+  --color-kid-leaf: var(--kid-leaf);
+  --color-kid-berry: var(--kid-berry);
+  --color-kid-candy: var(--kid-candy);
+  --color-kid-ink: var(--kid-ink);
 }
 
 :root {
@@ -113,6 +119,21 @@
   --holo-line: oklch(0.7 0.14 205);
   --holo-text: oklch(0.95 0.04 210);
   --holo-accent: oklch(0.85 0.14 175);
+  --kid-sun: oklch(0.88 0.16 85);
+  --kid-sky: oklch(0.82 0.12 230);
+  --kid-leaf: oklch(0.85 0.14 145);
+  --kid-berry: oklch(0.82 0.13 340);
+  --kid-candy: oklch(0.86 0.13 30);
+  --kid-ink: oklch(0.25 0.05 60);
+}
+
+@keyframes kid-bob {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-6px) rotate(1.5deg); }
+}
+
+.kid-tile {
+  animation: kid-bob 3.4s ease-in-out infinite;
 }
 
 @keyframes blink {
@@ -189,6 +210,12 @@
   --holo-line: oklch(0.72 0.14 205);
   --holo-text: oklch(0.96 0.04 210);
   --holo-accent: oklch(0.86 0.14 175);
+  --kid-sun: oklch(0.8 0.15 85);
+  --kid-sky: oklch(0.72 0.12 230);
+  --kid-leaf: oklch(0.75 0.13 145);
+  --kid-berry: oklch(0.72 0.13 340);
+  --kid-candy: oklch(0.76 0.13 30);
+  --kid-ink: oklch(0.18 0.03 60);
 }
 
 @layer base {
