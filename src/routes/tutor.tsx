@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Bot, Send, User } from "lucide-react";
+import { Baby, Bot, GraduationCap, Send, User, Volume2 } from "lucide-react";
 
 import { SiteLayout } from "@/components/site-layout";
 import { Blackboard } from "@/components/blackboard";
@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { boardFor, welcomeBoard, type BoardContent } from "@/lib/board-content";
+import { Switch } from "@/components/ui/switch";
+import { KidsPlayground } from "@/components/kids-playground";
+import { kidsReply, kidsWelcome, speakHindi, stopSpeaking } from "@/lib/kids-mode";
 import { tutorReply } from "@/lib/demo-data";
 
 export const Route = createFileRoute("/tutor")({
@@ -50,6 +53,23 @@ function TutorPage() {
   const [thinking, setThinking] = useState(false);
   const [board, setBoard] = useState<BoardContent>(welcomeBoard);
   const [revision, setRevision] = useState(0);
+  const [kidsMode, setKidsMode] = useState(false);
+
+  const toggleKids = (next: boolean) => {
+    stopSpeaking();
+    setKidsMode(next);
+    setInput("");
+    setMessages([
+      {
+        id: Date.now(),
+        role: "tutor",
+        text: next
+          ? kidsWelcome
+          : "Welcome to Dhruv Academy! I am Dhruv AI, your personal tutor. How can I help you learn today?",
+      },
+    ]);
+    if (next) speakHindi(kidsWelcome);
+  };
 
   const send = (text: string) => {
     const question = text.trim();
@@ -58,12 +78,14 @@ function TutorPage() {
     setInput("");
     setThinking(true);
     setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { id: Date.now() + 1, role: "tutor", text: tutorReply(question) },
-      ]);
-      setBoard(boardFor(question));
-      setRevision((r) => r + 1);
+      const reply = kidsMode ? kidsReply(question) : tutorReply(question);
+      setMessages((prev) => [...prev, { id: Date.now() + 1, role: "tutor", text: reply }]);
+      if (kidsMode) {
+        speakHindi(reply);
+      } else {
+        setBoard(boardFor(question));
+        setRevision((r) => r + 1);
+      }
       setThinking(false);
     }, 600);
   };
@@ -71,16 +93,40 @@ function TutorPage() {
   return (
     <SiteLayout>
       <div className="mx-auto max-w-6xl space-y-8 px-4 py-14">
-        <Blackboard content={board} revision={revision} />
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-card p-4">
+          <div className="flex items-center gap-3">
+            <span className="flex size-11 items-center justify-center rounded-2xl bg-kid-sun text-2xl">
+              {kidsMode ? "🧸" : "🎓"}
+            </span>
+            <div>
+              <p className="text-base font-bold">{kidsMode ? "NC / Kids Mode चालू है" : "NC / Kids Mode"}</p>
+              <p className="text-sm text-muted-foreground">
+                {kidsMode
+                  ? "Dhruv Bhaiya अब आसान हिंदी में बात करेंगे 🌸"
+                  : "Switch to a playful Hindi/Hinglish big-brother tutor for young kids"}
+              </p>
+            </div>
+          </div>
+          <label className="flex cursor-pointer items-center gap-3 text-sm font-semibold">
+            <GraduationCap className="size-4 text-muted-foreground" />
+            <Switch checked={kidsMode} onCheckedChange={toggleKids} aria-label="Toggle Kids Mode" />
+            <Baby className="size-5 text-primary" />
+          </label>
+        </div>
 
-        <div className="grid gap-8 lg:grid-cols-[1.7fr_1fr]">
+        {kidsMode ? <KidsPlayground onPick={send} /> : <Blackboard content={board} revision={revision} />}
+
+        <div className={`grid gap-8 ${kidsMode ? "" : "lg:grid-cols-[1.7fr_1fr]"}`}>
         <Card className="flex h-[60vh] flex-col">
 
           <CardHeader className="border-b border-border">
             <CardTitle className="flex items-center gap-2 text-base">
-              <Bot className="size-5 text-primary" /> Dhruv AI
+              {kidsMode ? <span className="text-xl">🧸</span> : <Bot className="size-5 text-primary" />}
+              {kidsMode ? "Dhruv Bhaiya" : "Dhruv AI"}
             </CardTitle>
-            <CardDescription>Socratic mode · demo responses run offline</CardDescription>
+            <CardDescription>
+              {kidsMode ? "Kids mode · आसान हिंदी में बातचीत" : "Socratic mode · demo responses run offline"}
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex-1 space-y-4 overflow-y-auto py-6">
             {messages.map((message) => (
@@ -90,7 +136,7 @@ function TutorPage() {
               >
                 {message.role === "tutor" && (
                   <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                    <Bot className="size-4" />
+                    {kidsMode ? <span className="text-base">🧸</span> : <Bot className="size-4" />}
                   </span>
                 )}
                 <p
@@ -101,6 +147,15 @@ function TutorPage() {
                   }`}
                 >
                   {message.text}
+                  {kidsMode && message.role === "tutor" && (
+                    <button
+                      type="button"
+                      onClick={() => speakHindi(message.text)}
+                      className="mt-2 flex items-center gap-1 text-xs font-bold text-primary"
+                    >
+                      <Volume2 className="size-4" /> सुनाओ
+                    </button>
+                  )}
                 </p>
                 {message.role === "user" && (
                   <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
@@ -110,9 +165,23 @@ function TutorPage() {
               </div>
             ))}
             {thinking && (
-              <p className="text-sm text-muted-foreground">Dhruv AI is thinking…</p>
+              <p className="text-sm text-muted-foreground">
+                {kidsMode ? "Dhruv Bhaiya सोच रहे हैं…" : "Dhruv AI is thinking…"}
+              </p>
             )}
           </CardContent>
+          {kidsMode ? (
+            <div className="flex flex-wrap gap-2 border-t border-border p-4">
+              {["फिर से बताओ", "अरे वाह!", "कहानी सुनोगे?"].map((quick) => (
+                <Button key={quick} variant="secondary" size="lg" onClick={() => send(quick)}>
+                  {quick}
+                </Button>
+              ))}
+              <Button variant="outline" size="lg" onClick={stopSpeaking}>
+                <Volume2 className="size-4" /> आवाज़ बंद
+              </Button>
+            </div>
+          ) : (
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -129,8 +198,10 @@ function TutorPage() {
               <Send className="size-4" />
             </Button>
           </form>
+          )}
         </Card>
 
+        {!kidsMode && (
         <aside className="space-y-6">
           <Card>
             <CardHeader>
@@ -161,6 +232,7 @@ function TutorPage() {
             </CardHeader>
           </Card>
         </aside>
+        )}
         </div>
       </div>
     </SiteLayout>
