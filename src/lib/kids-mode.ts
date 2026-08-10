@@ -138,10 +138,10 @@ export function kidsReply(question: string): string {
     (topic) => q.includes(topic.id) || q.includes(topic.label) || q.includes(topic.prompt.toLowerCase()),
   );
   if (matched) return matched.reply;
-  if (q.includes("kahani") || q.includes("story") || q.includes("कहानी")) return kidsTopics[0].reply;
-  if (/[0-9]|count|ginti|गिनती/.test(q)) return kidsTopics[1].reply;
+  if (q.includes("kahani") || q.includes("story") || q.includes("कहानी")) return kidsTopics[0]!.reply;
+  if (/[0-9]|count|ginti|गिनती/.test(q)) return kidsTopics[1]!.reply;
   const index = Math.abs(question.length) % kidsFallbacks.length;
-  return kidsFallbacks[index];
+  return kidsFallbacks[index]!;
 }
 
 export function speakHindi(text: string) {
