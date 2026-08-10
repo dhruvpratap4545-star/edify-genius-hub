@@ -13,13 +13,13 @@ import { tutorReply } from "@/lib/demo-data";
 export const Route = createFileRoute("/tutor")({
   head: () => ({
     meta: [
-      { title: "AI Tutor — AiEdTech" },
+      { title: "Dhruv AI — Dhruv Academy" },
       {
         name: "description",
         content:
-          "Ask the AiEdTech Socratic tutor about calculus, machine learning, Python, quantum computing or study technique.",
+          "Ask the Dhruv Academy Socratic tutor about calculus, machine learning, Python, quantum computing or study technique.",
       },
-      { property: "og:title", content: "AI Tutor — AiEdTech" },
+      { property: "og:title", content: "Dhruv AI — Dhruv Academy" },
       {
         property: "og:description",
         content: "A Socratic study partner that guides you to the answer instead of handing it over.",
@@ -78,7 +78,7 @@ function TutorPage() {
 
           <CardHeader className="border-b border-border">
             <CardTitle className="flex items-center gap-2 text-base">
-              <Bot className="size-5 text-primary" /> AI Tutor
+              <Bot className="size-5 text-primary" /> Dhruv AI
             </CardTitle>
             <CardDescription>Socratic mode · demo responses run offline</CardDescription>
           </CardHeader>
@@ -110,7 +110,7 @@ function TutorPage() {
               </div>
             ))}
             {thinking && (
-              <p className="text-sm text-muted-foreground">Tutor is thinking…</p>
+              <p className="text-sm text-muted-foreground">Dhruv AI is thinking…</p>
             )}
           </CardContent>
           <form

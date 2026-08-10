@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 const nav = [
   { to: "/", label: "Home" },
   { to: "/courses", label: "Courses" },
-  { to: "/tutor", label: "AI Tutor" },
+  { to: "/tutor", label: "Dhruv AI" },
   { to: "/quiz", label: "Quiz" },
   { to: "/dashboard", label: "Dashboard" },
 ] as const;
@@ -19,7 +19,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <GraduationCap className="size-5" />
             </span>
-            <span className="text-lg font-semibold tracking-tight">AiEdTech</span>
+            <span className="text-lg font-semibold tracking-tight">Dhruv Academy</span>
           </Link>
           <nav className="flex items-center gap-1">
             {nav.map((item) => (
@@ -39,7 +39,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <main className="flex-1">{children}</main>
       <footer className="border-t border-border py-8">
         <div className="mx-auto max-w-6xl px-4 text-sm text-muted-foreground">
-          AiEdTech — demo mode. All courses, progress and tutor replies are sample data.
+          Dhruv Academy — demo mode. All courses, progress and tutor replies are sample data.
         </div>
       </footer>
     </div>

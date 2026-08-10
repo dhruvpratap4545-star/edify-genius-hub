@@ -17,15 +17,15 @@ export const Route = createFileRoute("/courses/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Course not found — AiEdTech" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Course not found — Dhruv Academy" }, { name: "robots", content: "noindex" }],
       };
     }
     const { course } = loaderData;
     return {
       meta: [
-        { title: `${course.title} — AiEdTech` },
+        { title: `${course.title} — Dhruv Academy` },
         { name: "description", content: course.summary },
-        { property: "og:title", content: `${course.title} — AiEdTech` },
+        { property: "og:title", content: `${course.title} — Dhruv Academy` },
         { property: "og:description", content: course.summary },
       ],
     };

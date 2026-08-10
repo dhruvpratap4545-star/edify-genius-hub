@@ -13,7 +13,7 @@ export function TutorAvatar({ speaking, className }: Props) {
         <svg
           viewBox="0 0 140 160"
           role="img"
-          aria-label={speaking ? "AI tutor explaining at the board" : "AI tutor waiting"}
+          aria-label={speaking ? "Dhruv AI explaining at the board" : "Dhruv AI waiting"}
           className="w-32 animate-[holo-flicker_4s_linear_infinite] sm:w-44"
           style={{ filter: "drop-shadow(0 0 10px var(--holo-glow))" }}
         >

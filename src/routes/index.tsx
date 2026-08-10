@@ -10,13 +10,13 @@ import { courses, learner } from "@/lib/demo-data";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AiEdTech — AI-Powered Learning Platform" },
+      { title: "Dhruv Academy — AI-Powered Learning Platform" },
       {
         name: "description",
         content:
-          "Adaptive courses, a Socratic AI tutor and progress analytics. Explore the full AiEdTech demo instantly.",
+          "Adaptive courses, a Socratic AI tutor and progress analytics. Explore the full Dhruv Academy demo instantly.",
       },
-      { property: "og:title", content: "AiEdTech — AI-Powered Learning Platform" },
+      { property: "og:title", content: "Dhruv Academy — AI-Powered Learning Platform" },
       {
         property: "og:description",
         content: "Adaptive courses, an AI tutor and progress analytics in one learning workspace.",
@@ -74,7 +74,7 @@ function Index() {
               Learn faster with a tutor that asks the right question
             </h1>
             <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-              AiEdTech combines adaptive courses, a Socratic AI tutor and honest progress analytics
+              Dhruv Academy combines adaptive courses, a Socratic AI tutor and honest progress analytics
               into one workspace built on the science of how memory actually works.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">

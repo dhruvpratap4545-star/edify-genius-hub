@@ -12,13 +12,13 @@ import { courses } from "@/lib/demo-data";
 export const Route = createFileRoute("/courses/")({
   head: () => ({
     meta: [
-      { title: "Course Catalog — AiEdTech" },
+      { title: "Course Catalog — Dhruv Academy" },
       {
         name: "description",
         content:
-          "Browse AiEdTech courses in AI, mathematics, programming, physics and study skills, with lessons and progress.",
+          "Browse Dhruv Academy courses in AI, mathematics, programming, physics and study skills, with lessons and progress.",
       },
-      { property: "og:title", content: "Course Catalog — AiEdTech" },
+      { property: "og:title", content: "Course Catalog — Dhruv Academy" },
       {
         property: "og:description",
         content: "Adaptive courses across AI, maths, programming, physics and study skills.",
