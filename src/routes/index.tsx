@@ -10,13 +10,13 @@ import { courses, learner } from "@/lib/demo-data";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dhruv Academy — AI-Powered Learning Platform" },
+      { title: "Dhruv Academy — Your Personal AI Guide for Learning" },
       {
         name: "description",
         content:
           "Adaptive courses, a Socratic AI tutor and progress analytics. Explore the full Dhruv Academy demo instantly.",
       },
-      { property: "og:title", content: "Dhruv Academy — AI-Powered Learning Platform" },
+      { property: "og:title", content: "Dhruv Academy — Your Personal AI Guide for Learning" },
       {
         property: "og:description",
         content: "Adaptive courses, an AI tutor and progress analytics in one learning workspace.",
