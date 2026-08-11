@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Baby, Bot, GraduationCap, Send, User, Volume2 } from "lucide-react";
+import { Bot, Send, User, Volume2 } from "lucide-react";
 
 import { SiteLayout } from "@/components/site-layout";
 import { Blackboard } from "@/components/blackboard";
@@ -8,9 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { boardFor, welcomeBoard, type BoardContent } from "@/lib/board-content";
-import { Switch } from "@/components/ui/switch";
 import { KidsPlayground } from "@/components/kids-playground";
-import { kidsReply, kidsWelcome, speakHindi, stopSpeaking } from "@/lib/kids-mode";
+import { kidsReply, speakHindi, stopSpeaking } from "@/lib/kids-mode";
 import { tutorReply } from "@/lib/demo-data";
 
 export const Route = createFileRoute("/tutor")({
@@ -54,22 +53,9 @@ function TutorPage() {
   const [board, setBoard] = useState<BoardContent>(welcomeBoard);
   const [revision, setRevision] = useState(0);
   const [kidsMode, setKidsMode] = useState(false);
+  void setKidsMode;
 
-  const toggleKids = (next: boolean) => {
-    stopSpeaking();
-    setKidsMode(next);
-    setInput("");
-    setMessages([
-      {
-        id: Date.now(),
-        role: "tutor",
-        text: next
-          ? kidsWelcome
-          : "Welcome to Dhruv Academy! I am Dhruv AI, your personal tutor. How can I help you learn today?",
-      },
-    ]);
-    if (next) speakHindi(kidsWelcome);
-  };
+
 
   const send = (text: string) => {
     const question = text.trim();
@@ -93,26 +79,6 @@ function TutorPage() {
   return (
     <SiteLayout>
       <div className="mx-auto max-w-6xl space-y-8 px-4 py-14">
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-card p-4">
-          <div className="flex items-center gap-3">
-            <span className="flex size-11 items-center justify-center rounded-2xl bg-kid-sun text-2xl">
-              {kidsMode ? "🧸" : "🎓"}
-            </span>
-            <div>
-              <p className="text-base font-bold">{kidsMode ? "NC / Kids Mode चालू है" : "NC / Kids Mode"}</p>
-              <p className="text-sm text-muted-foreground">
-                {kidsMode
-                  ? "Dhruv Bhaiya अब आसान हिंदी में बात करेंगे 🌸"
-                  : "Switch to a playful Hindi/Hinglish big-brother tutor for young kids"}
-              </p>
-            </div>
-          </div>
-          <label className="flex cursor-pointer items-center gap-3 text-sm font-semibold">
-            <GraduationCap className="size-4 text-muted-foreground" />
-            <Switch checked={kidsMode} onCheckedChange={toggleKids} aria-label="Toggle Kids Mode" />
-            <Baby className="size-5 text-primary" />
-          </label>
-        </div>
 
         {kidsMode ? <KidsPlayground onPick={send} /> : <Blackboard content={board} revision={revision} />}
 
