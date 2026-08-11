@@ -50,10 +50,16 @@ export function WhatsAppAuth() {
         {generatedLink && (
           <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg space-y-2 text-xs break-all">
             <p className="font-mono text-muted-foreground">{generatedLink}</p>
-            <Button onClick={copyToClipboard} size="sm" variant="outline" className="w-full gap-2">
-              {copied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
-              {copied ? "Copied!" : "Copy Link"}
-            </Button>
+            <div className="grid grid-cols-2 gap-2">
+              <Button onClick={copyToClipboard} size="sm" variant="outline" className="w-full gap-2">
+                {copied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+                {copied ? "Copied!" : "Copy Link"}
+              </Button>
+              <Button onClick={sendViaWhatsApp} size="sm" className="w-full gap-2 bg-emerald-600 hover:bg-emerald-700">
+                <Send className="w-3.5 h-3.5" />
+                Send via WhatsApp
+              </Button>
+            </div>
           </div>
         )}
       </CardContent>
