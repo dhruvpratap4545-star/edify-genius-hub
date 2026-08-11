@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MessageSquare, Copy, Check } from "lucide-react";
+import { MessageSquare, Copy, Check, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -11,7 +11,8 @@ export function WhatsAppAuth() {
 
   const generateLink = () => {
     if (!childName.trim()) return;
-    const link = `https://dhruv-academy.lovable.app/login?child=${encodeURIComponent(childName)}&auth=voice-auth`;
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    const link = `${origin}/login?child=${encodeURIComponent(childName)}&auth=voice-auth`;
     setGeneratedLink(link);
   };
 
@@ -19,6 +20,12 @@ export function WhatsAppAuth() {
     navigator.clipboard.writeText(generatedLink);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const sendViaWhatsApp = () => {
+    const text = `Hi! Use this magic link to access Dhruv Academy as ${childName.trim()}: ${generatedLink}`;
+    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
