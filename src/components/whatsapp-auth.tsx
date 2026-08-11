@@ -11,7 +11,7 @@ export function WhatsAppAuth() {
 
   const generateLink = () => {
     if (!childName.trim()) return;
-    const link = https://edify-genius-hub.vercel.app/login?child=${encodeURIComponent(childName)}&auth=voice-auth;
+    const link = `https://dhruv-academy.lovable.app/login?child=${encodeURIComponent(childName)}&auth=voice-auth`;
     setGeneratedLink(link);
   };
 
