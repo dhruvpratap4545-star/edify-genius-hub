@@ -115,7 +115,7 @@ export const QuizEngine: React.FC = () => {
               key={idx}
               onClick={() => handleSelect(idx)}
               disabled={isSubmitted}
-              className={w-full text-left p-4 rounded-xl border-2 transition-all flex items-center justify-between ${btnStyle}}
+              className={'w-full text-left p-4 rounded-xl border-2 transition-all flex items-center justify-between ${btnStyle}'}
             >
               <span>{option}</span>
               {isSubmitted && idx === currentQ.correctAnswer && (
