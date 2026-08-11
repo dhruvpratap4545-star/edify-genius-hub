@@ -53,22 +53,9 @@ function TutorPage() {
   const [board, setBoard] = useState<BoardContent>(welcomeBoard);
   const [revision, setRevision] = useState(0);
   const [kidsMode, setKidsMode] = useState(false);
+  void setKidsMode;
 
-  const toggleKids = (next: boolean) => {
-    stopSpeaking();
-    setKidsMode(next);
-    setInput("");
-    setMessages([
-      {
-        id: Date.now(),
-        role: "tutor",
-        text: next
-          ? kidsWelcome
-          : "Welcome to Dhruv Academy! I am Dhruv AI, your personal tutor. How can I help you learn today?",
-      },
-    ]);
-    if (next) speakHindi(kidsWelcome);
-  };
+
 
   const send = (text: string) => {
     const question = text.trim();
