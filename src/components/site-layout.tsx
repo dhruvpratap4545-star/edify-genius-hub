@@ -1,3 +1,4 @@
+import ChidiyaBuddy from './ChidiyaBuddy';
 import { Link } from "@tanstack/react-router";
 import { GraduationCap } from "lucide-react";
 import type { ReactNode } from "react";
@@ -42,6 +43,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           Dhruv Academy — demo mode. All courses, progress and tutor replies are sample data.
         </div>
       </footer>
+      <ChidiyaBuddy />
     </div>
   );
 }
