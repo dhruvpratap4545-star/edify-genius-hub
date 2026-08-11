@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Baby, Bot, GraduationCap, Send, User, Volume2 } from "lucide-react";
+import { Bot, Send, User, Volume2 } from "lucide-react";
 
 import { SiteLayout } from "@/components/site-layout";
 import { Blackboard } from "@/components/blackboard";
@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { boardFor, welcomeBoard, type BoardContent } from "@/lib/board-content";
-import { Switch } from "@/components/ui/switch";
 import { KidsPlayground } from "@/components/kids-playground";
 import { kidsReply, kidsWelcome, speakHindi, stopSpeaking } from "@/lib/kids-mode";
 import { tutorReply } from "@/lib/demo-data";
