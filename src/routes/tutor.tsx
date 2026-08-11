@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { boardFor, welcomeBoard, type BoardContent } from "@/lib/board-content";
 import { KidsPlayground } from "@/components/kids-playground";
-import { kidsReply, kidsWelcome, speakHindi, stopSpeaking } from "@/lib/kids-mode";
+import { kidsReply, speakHindi, stopSpeaking } from "@/lib/kids-mode";
 import { tutorReply } from "@/lib/demo-data";
 
 export const Route = createFileRoute("/tutor")({
