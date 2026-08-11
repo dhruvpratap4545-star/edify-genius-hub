@@ -30,9 +30,9 @@ export function Avatar3D() {
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col items-center gap-4">
-        <div className={relative w-32 h-32 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg transition-transform duration-300 ${isSpeaking ? 'scale-105 ring-4 ring-indigo-400/50' : ''}}>
+        <div className={`relative w-32 h-32 rounded-full bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg transition-transform duration-300 ${isSpeaking ? 'scale-105 ring-4 ring-indigo-400/50' : ''}`}>
           <div className="w-28 h-28 rounded-full bg-slate-950 flex items-center justify-center text-white">
-            <MessageSquare className={w-12 h-12 text-indigo-400 ${isSpeaking ? 'animate-bounce' : ''}} />
+            <MessageSquare className={`w-12 h-12 text-indigo-400 ${isSpeaking ? 'animate-bounce' : ''}`} />
           </div>
         </div>
         <p className="text-sm text-center text-muted-foreground italic bg-background/80 p-3 rounded-lg border">
