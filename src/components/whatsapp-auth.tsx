@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MessageSquare, Copy, Check } from "lucide-react";
+import { MessageSquare, Copy, Check, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -11,7 +11,8 @@ export function WhatsAppAuth() {
 
   const generateLink = () => {
     if (!childName.trim()) return;
-    const link = `https://dhruv-academy.lovable.app/login?child=${encodeURIComponent(childName)}&auth=voice-auth`;
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    const link = `${origin}/login?child=${encodeURIComponent(childName)}&auth=voice-auth`;
     setGeneratedLink(link);
   };
 
@@ -19,6 +20,12 @@ export function WhatsAppAuth() {
     navigator.clipboard.writeText(generatedLink);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const sendViaWhatsApp = () => {
+    const text = `Hi! Use this magic link to access Dhruv Academy as ${childName.trim()}: ${generatedLink}`;
+    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -43,10 +50,16 @@ export function WhatsAppAuth() {
         {generatedLink && (
           <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg space-y-2 text-xs break-all">
             <p className="font-mono text-muted-foreground">{generatedLink}</p>
-            <Button onClick={copyToClipboard} size="sm" variant="outline" className="w-full gap-2">
-              {copied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
-              {copied ? "Copied!" : "Copy Link"}
-            </Button>
+            <div className="grid grid-cols-2 gap-2">
+              <Button onClick={copyToClipboard} size="sm" variant="outline" className="w-full gap-2">
+                {copied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+                {copied ? "Copied!" : "Copy Link"}
+              </Button>
+              <Button onClick={sendViaWhatsApp} size="sm" className="w-full gap-2 bg-emerald-600 hover:bg-emerald-700">
+                <Send className="w-3.5 h-3.5" />
+                Send via WhatsApp
+              </Button>
+            </div>
           </div>
         )}
       </CardContent>
