@@ -1,164 +1,78 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { Sparkles, Bot, LineChart, BookOpen, Zap, ShieldCheck } from "lucide-react";
-
+import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
+import { Sparkles, Bot, LineChart, BookOpen, Zap, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { courses, learner } from "@/lib/demo-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dhruv Academy — Your Personal AI Guide for Learning" },
-      {
-        name: "description",
-        content:
-          "Adaptive courses, a Socratic AI tutor and progress analytics. Explore the full Dhruv Academy demo instantly.",
-      },
-      { property: "og:title", content: "Dhruv Academy — Your Personal AI Guide for Learning" },
-      {
-        property: "og:description",
-        content: "Adaptive courses, an AI tutor and progress analytics in one learning workspace.",
-      },
+      { title: "Dhruv Academy – Your Personal AI Guide for Learning" },
+      { name: "description", content: "Adaptive courses, Socratic AI tutor, and progress analytics." },
     ],
   }),
   component: Index,
 });
 
-const features = [
-  {
-    icon: Bot,
-    title: "Socratic AI tutor",
-    body: "Ask anything and get guided questions that build understanding instead of handing over answers.",
-  },
-  {
-    icon: Sparkles,
-    title: "Adaptive lesson paths",
-    body: "Each course reorders itself around what you've mastered and what keeps slipping.",
-  },
-  {
-    icon: LineChart,
-    title: "Progress analytics",
-    body: "Streaks, weekly minutes and mastery per topic — visible at a glance on your dashboard.",
-  },
-  {
-    icon: BookOpen,
-    title: "Generated quizzes",
-    body: "Retrieval practice drawn from the exact lessons you studied this week.",
-  },
-  {
-    icon: Zap,
-    title: "Ten-minute sessions",
-    body: "Study blocks designed around spacing and interleaving, not marathon cramming.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Verifiable explanations",
-    body: "Every AI answer points back to the lesson it came from, so you can check the source.",
-  },
-];
-
 function Index() {
-  const featured = courses.slice(0, 3);
-
   return (
     <SiteLayout>
-      <section className="border-b border-border bg-secondary/40">
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-20 md:grid-cols-[1.1fr_0.9fr] md:items-center">
-          <div>
-            <Badge className="mb-4 bg-accent text-accent-foreground hover:bg-accent">
-              Demo mode — everything is live
-            </Badge>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Dhruv Academy — Your Personal AI Guide for Learning
-            </h1>
-            <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-              Dhruv Academy combines adaptive courses, Dhruv AI as your Socratic tutor and honest progress analytics
-              into one workspace built on the science of how memory actually works.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link to="/courses">Browse courses</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/tutor">Try the AI tutor</Link>
-              </Button>
-            </div>
-            <dl className="mt-10 grid max-w-md grid-cols-3 gap-6">
-              {[
-                ["108k", "Learners"],
-                ["4.8★", "Avg rating"],
-                [`${learner.streak} days`, "Your streak"],
-              ].map(([value, label]) => (
-                <div key={label}>
-                  <dt className="text-2xl font-semibold text-foreground">{value}</dt>
-                  <dd className="text-sm text-muted-foreground">{label}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <Card className="shadow-sm">
+      <div className="flex flex-col items-center justify-center min-h-[80vh] p-6 text-center space-y-8">
+        <Badge variant="outline" className="px-4 py-1 text-sm border-primary/50">
+          <Sparkles className="w-4 h-4 mr-2 inline text-yellow-500" />
+          Dhruv Academy AI v2.0 Active
+        </Badge>
+
+        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight">
+          Welcome to <span className="text-primary">Dhruv Academy</span>
+        </h1>
+
+        <p className="text-lg text-muted-foreground max-w-2xl">
+          Your personal 3D AI Guide, Language Switcher, Parent Growth Dashboard, and Child Privacy Shield are now active.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl text-left mt-6">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-base">Today's session</CardTitle>
-              <CardDescription>Picked for you from three active courses</CardDescription>
+              <CardTitle className="flex items-center gap-2">
+                <Bot className="w-5 h-5 text-blue-500" /> AI Avatar & Speech
+              </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
-              {featured.map((course) => (
-                <Link
-                  key={course.slug}
-                  to="/courses/$slug"
-                  params={{ slug: course.slug }}
-                  className="block rounded-lg border border-border p-4 transition-colors hover:bg-secondary/60"
-                >
-                  <p className="text-sm font-medium text-foreground">{course.title}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {course.progress}% complete · {course.lessons.length} lessons
-                  </p>
-                  <div className="mt-3 h-1.5 w-full rounded-full bg-muted">
-                    <div
-                      className="h-1.5 rounded-full bg-primary"
-                      style={{ width: `${course.progress}%` }}
-                    />
-                  </div>
-                </Link>
-              ))}
+            <CardContent>
+              <CardDescription>Interactive Socratic learning avatar with real-time speech synthesis.</CardDescription>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <LineChart className="w-5 h-5 text-green-500" /> Positive Dashboard
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription>Comprehensive growth metrics with 100% student chat privacy rules.</CardDescription>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Zap className="w-5 h-5 text-amber-500" /> WhatsApp Auth
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CardDescription>Instant Magic Link generator for child sub-profiles with Voice-Name login.</CardDescription>
             </CardContent>
           </Card>
         </div>
-      </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-20">
-        <h2 className="text-3xl font-semibold tracking-tight">Everything in one workspace</h2>
-        <p className="mt-3 max-w-2xl text-muted-foreground">
-          No separate flashcard app, no scattered notes, no guessing whether the studying worked.
-        </p>
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
-            <Card key={feature.title}>
-              <CardHeader>
-                <feature.icon className="size-6 text-primary" />
-                <CardTitle className="mt-3 text-lg">{feature.title}</CardTitle>
-                <CardDescription>{feature.body}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-t border-border bg-secondary/40">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-16 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight">Ready to test yourself?</h2>
-            <p className="mt-2 text-muted-foreground">
-              Five questions pulled from your active lessons. Two minutes, instant feedback.
-            </p>
-          </div>
-          <Button asChild size="lg">
-            <Link to="/quiz">Start the quiz</Link>
+        <div className="pt-4">
+          <Button size="lg" className="rounded-full px-8 text-base">
+            Explore Dashboard
           </Button>
         </div>
-      </section>
+      </div>
     </SiteLayout>
   );
 }
