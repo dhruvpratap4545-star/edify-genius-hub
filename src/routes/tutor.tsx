@@ -93,26 +93,6 @@ function TutorPage() {
   return (
     <SiteLayout>
       <div className="mx-auto max-w-6xl space-y-8 px-4 py-14">
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-card p-4">
-          <div className="flex items-center gap-3">
-            <span className="flex size-11 items-center justify-center rounded-2xl bg-kid-sun text-2xl">
-              {kidsMode ? "🧸" : "🎓"}
-            </span>
-            <div>
-              <p className="text-base font-bold">{kidsMode ? "NC / Kids Mode चालू है" : "NC / Kids Mode"}</p>
-              <p className="text-sm text-muted-foreground">
-                {kidsMode
-                  ? "Dhruv Bhaiya अब आसान हिंदी में बात करेंगे 🌸"
-                  : "Switch to a playful Hindi/Hinglish big-brother tutor for young kids"}
-              </p>
-            </div>
-          </div>
-          <label className="flex cursor-pointer items-center gap-3 text-sm font-semibold">
-            <GraduationCap className="size-4 text-muted-foreground" />
-            <Switch checked={kidsMode} onCheckedChange={toggleKids} aria-label="Toggle Kids Mode" />
-            <Baby className="size-5 text-primary" />
-          </label>
-        </div>
 
         {kidsMode ? <KidsPlayground onPick={send} /> : <Blackboard content={board} revision={revision} />}
 
