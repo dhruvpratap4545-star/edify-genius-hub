@@ -11,9 +11,9 @@ export function WhatsAppAuth() {
 
   const generateLink = () => {
     if (!childName.trim()) return;
-    // Uses dynamic base URL pointing to main route (Fixes 404 Error)
-    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://edify-genius-hub.vercel.app';
-    const link = ${baseUrl}/?child=${encodeURIComponent(childName)}&auth=voice-auth;
+    const baseUrl =
+      typeof window !== "undefined" ? window.location.origin : "https://edify-genius-hub.lovable.app";
+    const link = `${baseUrl}/?child=${encodeURIComponent(childName)}&auth=voice-auth`;
     setGeneratedLink(link);
   };
 
@@ -25,8 +25,8 @@ export function WhatsAppAuth() {
 
   const shareOnWhatsApp = () => {
     if (!generatedLink) return;
-    const message = Hi ${childName}! Here is your access link for Dhruv Academy: ${generatedLink};
-    window.open(https://api.whatsapp.com/send?text=${encodeURIComponent(message)}, '_blank');
+    const message = `Hi ${childName}! Here is your access link for Dhruv Academy: ${generatedLink}`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
