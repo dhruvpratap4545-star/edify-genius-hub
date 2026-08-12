@@ -40,7 +40,7 @@ export const QuizEngine: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState(0);
 
-  const currentQ = sampleQuestions[currentIdx];
+  const currentQ = sampleQuestions[currentIdx]!;
 
   const handleSelect = (index: number) => {
     if (!isSubmitted) {
