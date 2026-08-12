@@ -29,7 +29,8 @@ export default function ChidiyaBuddy() {
       {/* उड़ती/बोलती हुई चिड़िया */}
       <button 
         onClick={() => speak("अरे वाह! आप बहुत होशियार बच्चे हैं! चलिए आगे बढ़ते हैं!")}
-        className={w-20 h-20 rounded-full bg-gradient-to-r from-yellow-300 to-pink-400 p-2 shadow-2xl transform hover:scale-110 transition-all ${isTalking ? 'animate-pulse' : ''}}
+        aria-label="Talk to Chidiya Rani"
+        className={`w-20 h-20 rounded-full bg-gradient-to-r from-yellow-300 to-pink-400 p-2 shadow-2xl transform hover:scale-110 transition-all ${isTalking ? "animate-pulse" : ""}`}
       >
         <span className="text-5xl">🐤</span>
       </button>

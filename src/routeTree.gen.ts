@@ -11,7 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as LessonsRouteImport } from './routes/lessons'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as QuizRouteImport } from './routes/quiz'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TutorRouteImport } from './routes/tutor'
 import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as CoursesSlugRouteImport } from './routes/courses.$slug'
@@ -26,9 +30,29 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LessonsRoute = LessonsRouteImport.update({
+  id: '/lessons',
+  path: '/lessons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuizRoute = QuizRouteImport.update({
   id: '/quiz',
   path: '/quiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TutorRoute = TutorRouteImport.update({
@@ -50,7 +74,11 @@ const CoursesSlugRoute = CoursesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/lessons': typeof LessonsRoute
+  '/profile': typeof ProfileRoute
   '/quiz': typeof QuizRoute
+  '/settings': typeof SettingsRoute
   '/tutor': typeof TutorRoute
   '/courses/$slug': typeof CoursesSlugRoute
   '/courses/': typeof CoursesIndexRoute
@@ -58,7 +86,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/lessons': typeof LessonsRoute
+  '/profile': typeof ProfileRoute
   '/quiz': typeof QuizRoute
+  '/settings': typeof SettingsRoute
   '/tutor': typeof TutorRoute
   '/courses/$slug': typeof CoursesSlugRoute
   '/courses': typeof CoursesIndexRoute
@@ -67,7 +99,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/lessons': typeof LessonsRoute
+  '/profile': typeof ProfileRoute
   '/quiz': typeof QuizRoute
+  '/settings': typeof SettingsRoute
   '/tutor': typeof TutorRoute
   '/courses/$slug': typeof CoursesSlugRoute
   '/courses/': typeof CoursesIndexRoute
@@ -75,14 +111,37 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/dashboard' | '/quiz' | '/tutor' | '/courses/$slug' | '/courses/'
+    | '/'
+    | '/dashboard'
+    | '/history'
+    | '/lessons'
+    | '/profile'
+    | '/quiz'
+    | '/settings'
+    | '/tutor'
+    | '/courses/$slug'
+    | '/courses/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/quiz' | '/tutor' | '/courses/$slug' | '/courses'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/history'
+    | '/lessons'
+    | '/profile'
+    | '/quiz'
+    | '/settings'
+    | '/tutor'
+    | '/courses/$slug'
+    | '/courses'
   id:
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/history'
+    | '/lessons'
+    | '/profile'
     | '/quiz'
+    | '/settings'
     | '/tutor'
     | '/courses/$slug'
     | '/courses/'
@@ -91,7 +150,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
+  HistoryRoute: typeof HistoryRoute
+  LessonsRoute: typeof LessonsRoute
+  ProfileRoute: typeof ProfileRoute
   QuizRoute: typeof QuizRoute
+  SettingsRoute: typeof SettingsRoute
   TutorRoute: typeof TutorRoute
   CoursesSlugRoute: typeof CoursesSlugRoute
   CoursesIndexRoute: typeof CoursesIndexRoute
@@ -113,11 +176,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lessons': {
+      id: '/lessons'
+      path: '/lessons'
+      fullPath: '/lessons'
+      preLoaderRoute: typeof LessonsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quiz': {
       id: '/quiz'
       path: '/quiz'
       fullPath: '/quiz'
       preLoaderRoute: typeof QuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tutor': {
@@ -147,7 +238,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
+  HistoryRoute: HistoryRoute,
+  LessonsRoute: LessonsRoute,
+  ProfileRoute: ProfileRoute,
   QuizRoute: QuizRoute,
+  SettingsRoute: SettingsRoute,
   TutorRoute: TutorRoute,
   CoursesSlugRoute: CoursesSlugRoute,
   CoursesIndexRoute: CoursesIndexRoute,
@@ -155,3 +250,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

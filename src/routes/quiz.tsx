@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { quizQuestions, getCourse } from "@/lib/demo-data";
+import { useHistory, useSettings } from "@/lib/store";
 
 export const Route = createFileRoute("/quiz")({
   head: () => ({
@@ -32,6 +33,8 @@ function QuizPage() {
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  const { add } = useHistory();
+  const [settings] = useSettings();
 
   const question = quizQuestions[index]!;
   const course = getCourse(question.courseSlug);
@@ -47,6 +50,11 @@ function QuizPage() {
   const next = () => {
     if (index + 1 >= quizQuestions.length) {
       setFinished(true);
+      add({
+        kind: "quiz",
+        title: "Practice quiz completed",
+        detail: `Scored ${score} / ${quizQuestions.length}`,
+      });
       return;
     }
     setIndex((i) => i + 1);
@@ -128,7 +136,7 @@ function QuizPage() {
                 );
               })}
 
-              {answered && (
+              {answered && settings.showExplanations && (
                 <div className="rounded-lg bg-secondary p-4 text-sm text-secondary-foreground">
                   <p className="font-medium">{correct ? "Correct." : "Not quite."}</p>
                   <p className="mt-1 text-muted-foreground">{question.explanation}</p>
