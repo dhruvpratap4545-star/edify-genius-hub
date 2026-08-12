@@ -15,6 +15,7 @@ import { Route as HistoryRouteImport } from './routes/history'
 import { Route as LessonsRouteImport } from './routes/lessons'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as QuizRouteImport } from './routes/quiz'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TutorRouteImport } from './routes/tutor'
 import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as CoursesSlugRouteImport } from './routes/courses.$slug'
@@ -49,6 +50,11 @@ const QuizRoute = QuizRouteImport.update({
   path: '/quiz',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TutorRoute = TutorRouteImport.update({
   id: '/tutor',
   path: '/tutor',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/lessons': typeof LessonsRoute
   '/profile': typeof ProfileRoute
   '/quiz': typeof QuizRoute
+  '/settings': typeof SettingsRoute
   '/tutor': typeof TutorRoute
   '/courses/$slug': typeof CoursesSlugRoute
   '/courses/': typeof CoursesIndexRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/lessons': typeof LessonsRoute
   '/profile': typeof ProfileRoute
   '/quiz': typeof QuizRoute
+  '/settings': typeof SettingsRoute
   '/tutor': typeof TutorRoute
   '/courses/$slug': typeof CoursesSlugRoute
   '/courses': typeof CoursesIndexRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/lessons': typeof LessonsRoute
   '/profile': typeof ProfileRoute
   '/quiz': typeof QuizRoute
+  '/settings': typeof SettingsRoute
   '/tutor': typeof TutorRoute
   '/courses/$slug': typeof CoursesSlugRoute
   '/courses/': typeof CoursesIndexRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/lessons'
     | '/profile'
     | '/quiz'
+    | '/settings'
     | '/tutor'
     | '/courses/$slug'
     | '/courses/'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/lessons'
     | '/profile'
     | '/quiz'
+    | '/settings'
     | '/tutor'
     | '/courses/$slug'
     | '/courses'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/lessons'
     | '/profile'
     | '/quiz'
+    | '/settings'
     | '/tutor'
     | '/courses/$slug'
     | '/courses/'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   LessonsRoute: typeof LessonsRoute
   ProfileRoute: typeof ProfileRoute
   QuizRoute: typeof QuizRoute
+  SettingsRoute: typeof SettingsRoute
   TutorRoute: typeof TutorRoute
   CoursesSlugRoute: typeof CoursesSlugRoute
   CoursesIndexRoute: typeof CoursesIndexRoute
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuizRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tutor': {
       id: '/tutor'
       path: '/tutor'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   LessonsRoute: LessonsRoute,
   ProfileRoute: ProfileRoute,
   QuizRoute: QuizRoute,
+  SettingsRoute: SettingsRoute,
   TutorRoute: TutorRoute,
   CoursesSlugRoute: CoursesSlugRoute,
   CoursesIndexRoute: CoursesIndexRoute,
